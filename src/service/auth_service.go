@@ -65,5 +65,6 @@ func Auth(context *gin.Context) {
 }
 
 func Portal(context *gin.Context) {
+    // todo use origin request url to redirect
     context.Redirect(301, "https://www.baidu.com")
 }
