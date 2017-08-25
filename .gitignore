@@ -1,0 +1,6 @@
+.idea
+pkg
+bin/
+vendor/
+*.lock
+*.iml

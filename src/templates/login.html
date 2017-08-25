@@ -1,0 +1,38 @@
+<html>
+<body>
+    <h1>
+        {{ .title }}
+    </h1>
+
+    <div>
+        mobile: <input id="mobile"/> <button id="click">send code</button><br>
+        code:   <input id="code"/><br>
+        <button id="submit">submit</button><br>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#click").click(function () {
+                // todo send request
+            });
+
+            $("#submit").click(function () {
+                $.ajax({
+                    type: "post",
+                    url: "/wgo/checkin",
+                    data: JSON.stringify({
+                        mobile: $("#mobile").val(),
+                        code: $("#code").val()
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log("Data: " + data + "\nStatus: " + status);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
