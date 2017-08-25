@@ -44,6 +44,7 @@ func CheckIn(context *gin.Context) {
         if v, ok := infos[user.Mobile]; ok {
             if user.Code == v {
                 // todo send user mobile info to register
+                delete(infos, user.Mobile)
                 context.Redirect(307, fmt.Sprintf("http://%s:%s/wifidog/auth?token=%s", define.GatewayIP, define.GatewayPort, util.UUID()))
             } else {
                 context.String(500, "invalid mobile or code!")
