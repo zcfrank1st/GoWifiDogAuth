@@ -15,7 +15,7 @@ type UserInfo struct {
 var infos = make(map[string]string)
 
 func Ping(context *gin.Context) {
-    context.String(200, "pong")
+    context.Data(200, "text/plain", []byte("Pong"))
 }
 
 func LoginPage(context *gin.Context) {
