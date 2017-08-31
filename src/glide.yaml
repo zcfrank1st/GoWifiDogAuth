@@ -7,3 +7,5 @@ import:
   version: v1.28.0
 - package: github.com/go-sql-driver/mysql
   version: v1.3
+- package: github.com/valyala/fasthttp
+  version: v20160617

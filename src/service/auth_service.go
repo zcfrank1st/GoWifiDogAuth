@@ -3,8 +3,9 @@ package service
 import (
     "github.com/gin-gonic/gin"
     "util"
-    "fmt"
     "define"
+    "log"
+    "github.com/valyala/fasthttp"
 )
 
 type UserInfo struct {
@@ -45,7 +46,15 @@ func CheckIn(context *gin.Context) {
             if user.Code == v {
                 // todo send user mobile info to register
                 delete(infos, user.Mobile)
-                context.Redirect(307, fmt.Sprintf("http://%s:%s/wifidog/auth?token=%s", define.GatewayIP, define.GatewayPort, util.UUID()))
+
+                code, body, err := fasthttp.Get(nil, "http://" + define.GatewayIP + ":" + define.GatewayPort + "/wifidog/auth?token=" + util.UUID())
+                if err != nil {
+                    log.Println("err -->", err)
+                    context.String(500, "request wifidog gateway error")
+                } else {
+                    respString := string(body)
+                    context.String(code, util.ParseRedirectUrl(respString))
+                }
             } else {
                 context.String(500, "invalid mobile or code!")
             }
@@ -67,5 +76,5 @@ func Auth(context *gin.Context) {
 
 func Portal(context *gin.Context) {
     // todo use origin request url to redirect
-    context.Redirect(301, "https://www.baidu.com")
+    context.HTML(200, "portal.html", gin.H{})
 }
