@@ -6,7 +6,6 @@ import (
     "define"
     "log"
     "github.com/valyala/fasthttp"
-    "fmt"
 )
 
 type UserInfo struct {
@@ -76,6 +75,5 @@ func Auth(context *gin.Context) {
 }
 
 func Portal(context *gin.Context) {
-    // todo use origin request url to redirect
     context.HTML(200, "portal.html", gin.H{})
 }
