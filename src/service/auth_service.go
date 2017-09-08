@@ -6,6 +6,7 @@ import (
     "define"
     "log"
     "github.com/valyala/fasthttp"
+    "fmt"
 )
 
 type UserInfo struct {
@@ -67,10 +68,10 @@ func CheckIn(context *gin.Context) {
 func Auth(context *gin.Context) {
     stage := context.Query("stage")
     switch stage {
-    case "login", "counter":
-        context.String(200, "Auth: 1")
+    case "login", "counters":
+        context.Data(200, "text/plain", []byte("Auth: 1"))
     default:
-        context.String(200, "Auth: 0")
+        context.Data(200, "text/plain", []byte("Auth: 0"))
     }
 }
 
