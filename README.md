@@ -9,4 +9,7 @@ GoWifiDogAuth
 MIT
 
 
-P.S. everyone can clone the repo, change the auth logic and frontend page to meet various needs ~
+## P.S. 
+
+* everyone can clone the repo, change the auth logic and frontend page to meet various needs
+* can work with the `release` in this project
